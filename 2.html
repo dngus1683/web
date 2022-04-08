@@ -1,33 +1,79 @@
+<!--
+주석입니다
+-->
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
 <head>
-  <title>2번 리스트</title>
+  <title>title은 해당 web 페이지의 제목을 의미한다.</title>
   <meta charset="utf-8">
+  <!-- style은 style안에 있는 코드는 css언어로 처리하라고 명령한다. 즉, css를 작성하는 곳은 style내부다.-->
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function NightDayHandler(self)
+    {
+      var target = document.querySelector('body');
+      var list = document.querySelectorAll('a');
+      if(self.value === 'night')
+      {
+        target.style.backgroundColor = 'black';
+        target.style.color = 'white';
+        self.value = 'day';
+
+        var i = 0;
+        while(i < list.length)
+        {
+          list[i].style.color = 'powderblue';
+          i = i + 1;
+        }
+      }
+      else{
+        target.style.backgroundColor = 'white';
+        target.style.color = 'black';
+        self.value = 'night';
+
+        var i = 0;
+        while(i < list.length)
+        {
+          list[i].style.color = 'blue';
+          i = i + 1;
+        }
+      }
+    }
+
+  </script>
   utf-8로 읽어라 라는 코드다.
 </head>
 
 
 <body>
   <h1><a href="index.html">Web</a></h1>
-  <ul>
-    <li><a href="1.html">1. li는 리스트 tag다.</a></li>
-    <li><a href="2.html">2. 코딩할 때, 세로로 동시에 작성하고 싶다면</a></li>
-    <li><a href="3.html">3. 컨트롤을 누른 상태로 마우스로 누르면 커서가 이동한다.</a></li>
-  </ul>
+  <input id="night_day" type="button" value="night" onclick="NightDayHandler(this)">
+  <div id="grid">
+    <ul>
+      <li><a href="1.html" class="saw">1. li는 리스트 tag다. 1,2번을 동시에 css로 작업하기 위해, 하나의 class로 묶어준다.</a></li>
+      <li><a href="2.html" class="saw" id="active">2. 코딩할 때, 세로로 동시에 작성하고 싶다면          (id는 class처럼 여러 개를 묶는게 아닌, 그 하나의 고유값을 주는 것이다. 때문에, id값을 지정했을 때는 그 값이 중복되면 안된다.)</a></li>
+      <li><a href="3.html">3. 컨트롤을 누른 상태로 마우스로 누르면 커서가 이동한다.</a></li>
+    </ul>
 
-  <ul>
-    <li>tag도 다른 코딩 언어처럼 부모자식 관계가 존재한다.</li>
-    <li>서로 다른 리스트를 구분하고 싶을 떄, </li>
-    <li>li의 부모tag인 ul tag를 사용한다,</li>
-  </ul>
+    <ul>
+      <li>tag도 다른 코딩 언어처럼 부모자식 관계가 존재한다.</li>
+      <li>서로 다른 리스트를 구분하고 싶을 떄, </li>
+      <li>li의 부모tag인 ul tag를 사용한다,</li>
+    </ul>
 
-  <ol>
-    <li>li의 다른 부모인 ol을 사용하면,</li>
-    <li>자동으로 넘버링 해준다.</li>
-  </ol>
+    <ol>
+      <li>li의 다른 부모인 ol을 사용하면,</li>
+      <li>자동으로 넘버링 해준다.</li>
+    </ol>
 
-  <p>여기는 2번 리스트를 타고 온 페이지</p>
+    <div id="article">
+      <h2>2번</h2>
+      <p>여기는 2번 리스트를 타고 온 페이지</p>
+    </div>
+  </div>
+
 </body>
 
 </html>
