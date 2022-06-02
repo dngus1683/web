@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1>JavaScript 정리</h1>
 <!--
 비교 연산자: ===
@@ -86,3 +87,93 @@ webVR: VR을 활용하고 싶을 때,
 
 
 -->
+=======
+<h1>JavaScript 정리</h1>
+<!--
+비교 연산자: ===
+배열: []
+    ex) var array = ['a', 'b'];
+    배열의 길이는 .lenght
+    배열에 원소를 추가하고 싶다면 .push()
+
+
+변수 선언: var 변수이름 = 값;
+
+
+함수 선언: function 함수이름() {}
+
+
+객체 선언: var 객체이름 = {키: 값, 키: 값};
+    ex) var ob = {"abc": 가나다"", "def": "라마바"};
+        document.write(ob.abc);의 출력 결과로 가나다가 나올 것이다.
+        ob.abc 대신에 ob['abc']로 사용해도 무방하다.
+    키와 값을 새로 추가하고 싶다면, ob.ghi = "사아자"; 처럼 바로 대입하면 된다.
+    키의 이름에 띄어쓰기를 사용하고 싶다면, ob["abc def"] = "가나다 라마바";
+    객체에 함수를 추가하고 싶다면, ob.alpha = function(){ 함수 내용 }으로 선언할 수 있다.
+    객체의 키에 해당하는 부분을 property라고 한다.
+
+for문: for(var key in object) {}
+    for문의 조건은 위 처럼, 객체의 모든 키들을 대상으로 반복이 된다.
+    ex) for(var key in objecr)
+        {
+          document.write(key + ':' + ob[key] + '<br>');
+        }
+
+출력: document.write();
+    소괄호 안에는 html언어를 사용할 수 있다. ex) document.write('abc <br>'); 를 하면 화면에는 abc와 줄바꿈이 나타나 있을 것이다.
+
+
+
+
+JS에서 ''안에 변수를 넣고 싶다면, 변수 이름 그대로 사용해서는 안된다. +를 활용해야한다.
+ex) var col = black; document.write('<li>색상: array </li>');  (X)
+    var col = black; document.write('<li>색상: ' + array + '</li>');  (O)
+
+
+
+
+페이지 속에 <.>를 나타내고 싶어서 그대로 쓰면 오류가 난다. 그 이유는 <,>는 html에서는 문법이기 때문이다.
+때문에 이를 문자 그대로 사용하기 위해서는 &lt;로 사용한다.
+
+
+리팩토링: 처음 코드를 완성을 했을 때, 그 기능은 유지하는 선에서 코드를 더욱 효율적으로 바꾸는 것을 리팩토링이라고 한다.
+리팩토링의 가장 기본은, 완성된 코드에서 중복되는 문장들을 우선적으로 통일을 시켜보는 것이다.
+
+
+
+
+html파일에 head 부분에서 script tag안에 js코드를 작성해도 되며, js코드를 따로 파일을 만들어 사용하고 싶다면, .js파일을 작성하여
+<script src="js파일명"> </script>로 이용하면 된다.
+
+
+
+JS library: JQuery
+
+
+
+
+
+
+
+
+
+
+
+검색 도우미
+
+document, DOM(document object model): 웹 페이지에 어떤 tag를 삭제하거나 자식 tag에 대해 알고 싶을 때,
+window: 웹 페이지가 아닌, 웹 브라우저 자체를 제어해야할 때,
+ajax: 웹 페이지를 reload하지 않고 정보를 변경하고 싶을 때,
+cookie: 웹 페이지가 reload되어도 현재 상태를 유지하고 싶을 때,
+offline web application: 인터넷이 끊겨도 구동되는 웹 페이지를 만들고 싶을 때,
+webRTC: 화상통신 웹 앱을 만들고 싶을 떄,
+speech: 사용자의 음성으로 정보를 전달할 때,
+webGL: 3차원 그래픽으로 게임을 만들고 싶을 때,
+webVR: VR을 활용하고 싶을 때,
+
+
+
+
+
+-->
+>>>>>>> b60967b620408d62a5707c819c57615fbd0b9341

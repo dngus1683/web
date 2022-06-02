@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
   <head>
@@ -23,3 +24,30 @@
 
   </body>
 </html>
+=======
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Grid</title>
+    <style>
+      #grid {
+        border:5px solid pink;
+        display: grid;
+        grid-template-columns: 150px 1fr; /*fr이란 비율을 의미하는데, 만약 2fr 1fr이었다면, 2:1의 비율로 공간을 나눈다.*/
+      }
+      div {
+        border:5px solid gray;
+      }
+    </style>
+  </head>
+  <body>
+    <!--두개 이상의 content를 각각의 테두리로 구분하기 위해서, div, span을 사용한다.
+  block 요소로 구분하고 싶다면 div, inline 요소로 구분하고 싶다면 span을 사용하면 된다. -->
+    <div id="grid">
+      <div>LostArk</div> <div>maplestory</div>
+    </div>
+
+  </body>
+</html>
+>>>>>>> b60967b620408d62a5707c819c57615fbd0b9341
