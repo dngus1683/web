@@ -1,0 +1,274 @@
+React의 핵심역할은 사용자 정의 tag를 만드는 것이다.
+고로, 본인이 tag를 만들 수도 있고, 남이 만든 tag를 가져다 쓸 수도 있다.
+React를 만드는 방법으로는. class 문법을 활용하여 만들거나, 함수 문법을 활용하여 만들 수 있다. 요즘은 함수를 많이 활용한다.
+
+
+
+
+
+ React 사용방법
+1. React 홈페이지에 들어가면, CodePen, CodeSandbox, Stackblitz와 같은 온라인 코드 편집기에서 바로 사용할 수 있다.
+
+2. 컴퓨터에 React 환경설정하기.
+- node.js 설치
+- React 홈페이지에서, 새로운 React 앱 만들기
+- 추천 툴체인에서 원하는 방법 클릭. 수업에서는 Creat React App 클릭함.
+- 터미널 창을 켜서, 원하는 폴더 위치에, 위 단계에서 확인한 환경 설치 명령어를 입력함. 이때, 폴더에 다른 파일이 없어야 한다.
+
+npm start로 시작할 수 있다.
+
+
+
+폴더에 들어가면 위 단계에서 설치한 파일들이 존재한다.
+그 중, src 폴더에 있는 index.js이 메인이 되는 파일이다.
+홈페이지를 꾸미려면, 해당 파일을 기준으로 필요한 것들을 추가하면 된다.
+
+
+
+
+  그렇게 만든 페이지를 배포하는 방법
+1. 터미널에서, 실행 중이던 명령을 중단한다. ctrl+c
+2. npm run build  실행.
+3. build라는 폴더가 생기고, 그 안에는 index.html파일이 존재함. 그 파일에는 본인이 개발한 웹이 빌드되어 있음.
+4. 빌드된 페이지를 서브하려면, npx serve -s (index.html이  존재하는 폴더명) build를 터미널 창에 입력
+
+
+
+이 다음 실습은 해당 파일의 주석에 작성함.
+
+
+========================================================================================================================================================
+
+
+ 대부분의 app은 총 4가지의 기능이 있다.
+ Creat Read Update Delete === CRUD 라고 부른다.
+ Update = create + Read 라고 볼 수 있다.
+
+
+
+
+
+
+
+
+
+
+
+
+ form: 사용자가 입력한 정보를 서버로 전송해주는 tag
+ <form action="여기에 적히는 주소로 정보 전송" > </form>
+
+
+
+
+
+========================================================================================================================================================
+유튜브: 리엑트 시작전 모르면 낭페보는 자바스크립트 문법 정리
+
+--------------------------------------------------------------
+1. object shorthand assignment
+
+let name = 'kitae';
+let age = 18;
+
+let person = {
+  name: name,
+  age: age
+}
+
+위처럼 키와 값의 변수 명이 같다면 아래와 같이 쓸 수 있다.
+
+let person = {
+  name,
+  age
+}
+
+--------------------------------------------------------------
+2. detructuring
+
+let person = {
+  name: 'kitae',
+  age: 18
+}
+let name = person.name
+let age = person['age']
+
+위처럼 값을 불러오는 것을 아래와 같이 한 줄로 표현가능하다.
+
+let {name, age} = person
+
+이 방법은 객체 뿐만아니라 배열에도 사용가능하다.
+
+--------------------------------------------------------------
+3. spread(...)
+
+let person = {name:'kitae', age:12}
+
+let person2 = {...person} // person2 객체에 person 객체를 복사한다.
+let person3 = person
+
+위 두 문장의 출력 결과는 같을 것이다. 하지만 차이는 존재하는데,
+
+person3은 person의 주소값만 복사한 것. 다시말해서, person3이 가리키고 있는 것은 person이 가리키는 것과 같다고 말할 수 있다.
+그에 반해 person2는 person이 복사되어 새 객체 하나가 만들어진 것이다.
+(person != person2 / person == person3)
+
+위 내용에 덧붙이면,
+
+let person2 = {...person, address: 'seoul'} // person을 복사한 후, address라는 새 값을 추가하여 객체를 생성한다.
+let person2 = {...person, name: 'seoul'} // person의 name의 값을 seoul로 바꾸고 객체를 생성한다.
+
+let animal = {legs: 2, arms: 2}
+let person2 = {...person, ...animal} // person과 animal 두 객체의 값들을 모두 복사하여 새 객체를 생성한다.
+
+위 방법 역시 배열에도 사용가능하다.
+
+
+--------------------------------------------------------------
+4. 삼항 연산자 (고급 프로그래밍 때 배운 것)
+
+let person = {name:'kitae', age:12}
+
+if(person)
+{
+  console.log(person.name)
+}
+else
+{
+  console.log("there is no person")
+}
+
+위의 코드를 아래 삼항 연산자를 활용하여 표현할 수 있다.
+
+console.log(person?person.name:"there is no person")
+
+
+
+
+========================================================================================================================================================
+
+<<<React class vs function>>>
+
+이전엔 state를 class에서만 사용가능했다. 하지만 hook이란 것이 개발되면서 function에서도 state를 사용할 수 있게 되었다.
+또한, life cycle 역시 class에서만 다뤘었지만, hook을 통해 function에서도 다룰수 있게 되어서
+function이 class에 견줄 수 있게 되었다.
+
+hook은 기본적으로 'use이름'으로 구성되어 있다. ex)useState, useEffect
+
+hook은 class외에서 state 값을 사용하게 하는 역할을 하며, 사용 방법은 다음과 같다.
+- import {useState} from 'react' 를 새로 import 해야한다
+- useState()는 배열이므로 아래와 같이 사용한다.
+- const [상태이름, set상태이름] = useState(첫 상태 값);
+- 상태를 부를 때는 useState가 호출되며, 그 초기값은 useState()의 괄호 안의 값이다.
+- 해당 state의 값은 '상태이름'이 가지고 있으며, 그 값을 바꾸는 함수는 'set상태이름'이 가지고 있다.
+- 즉, 'set상태이름'의 함수에 의해 '상태이름'값이 바뀐다.
+
+
+react life cycle: https://gseok.gitbooks.io/react/content/bd80-bd84-bd80-bd84-c9c0-c2dd-b4e4/react-component-lifecycle-api-c815-b9ac.html
+
+위 글에서 보면, class에서, 크게 componentWillMount() -> render() -> componentDidMount() -> 업데이트
+-> shouldComponentUpdate() -> componentWillUpdate() -> render() -> componentDidUpdate() 순으로 호출되는 cycle을 가진다.
+
+  componentWillMount(): 웹이 처음 시작했을 때 render되기 전
+  componentDidMount(): 웹이 처음 시작했을 때 render된 후
+  shouldComponentUpdate(), componentWillUpdate(), componentDidUpdate(): 웹이 업데이트 되었을 때,
+  componentWillUnMount(): 업데이트가 되어서 새 component가 실행될 때, 이 전에 실행되던 component의 내용을 정리하는 method
+                          이를 clean up이라고 한다.
+                          이 method의 실행 순서로는, 업데이트 후 render() -> componentWillUnMount() -> componentDidUpdate()의
+                          순서로 호출된다.
+
+이를 "useEffect" hook을 활용하여 function에서 life cycle을 구현해보면 다음과 같다
+- import {useEffect} from 'react' 를 새로 import 해야한다
+- useEffect("호출하고 싶은 함수."(){
+
+  });
+- useEffect는 웹이 처음 시작되고 function이 호출된 후 뒤이어 호출되며, 매번 업데이트되면 function 다음으로 호출된다.
+- 즉, componentDidMount(), componentDidUpdate()의 역할을 하는 것이다.
+- useEffect는 side effect를 줄인 이름이며, 부가적인 작용이라고 해석할 수 있다.
+- useEffect는 복수 개 사용 가능하다.
+- useEffect로 componentWillUnMount()을 구현하는 방법은 return을 활용하는 것이며 그 형태는 아래와 같다.
+- useEffect("호출하고 싶은 함수"(){
+    return "호출하고 싶은 함수"(){
+
+    }
+  });
+- update가 될 때 state값이 변할 때만 useEffect내의 함수가 호출되길 바란다면,
+  useEffect("호출하고 싶은 함수."(){
+
+  },[기준으로 잡고싶은 state 명]);
+- 위처럼 사용한다면, []내의 state 값이 변해야만 useEffect내의 함수가 호출된다.
+- 위의 능력을 활용하여, useEffect로 componentDidMount()의 역할만 발휘하고 싶다면 아래와 같은 skill을 사용하면 된다.
+- useEffect("호출하고 싶은 함수."(){
+
+  },[]); []안에 아무것도 적지 않는다.
+----------------------------------------------------------------------------------------------------------------------------
+  차이점1: props를 사용할 때, 함수는 props를 바로 사용하지만 클래스는 this 객체를 사용한다.
+  ex)
+    function FuncComp(props) {
+    return (
+      <div className="container">
+        <h2>function style component</h2>
+        <p>Number : {props.initNumber} </p>     <----여기
+      </div>
+    );
+  }
+
+
+  class ClassComp extends React.Component {
+    render(){ // render는 class 내의 method. 즉, function의 역할을 한다.
+      return (
+        <div className="container">
+          <h2>class style component</h2>
+          <p>Number : {this.props.initNumber} </p>    <----여기
+        </div>
+      );
+    }
+  }
+----------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+========================================================================================================================================================
+Redux
+- 예측 가능한 애플리케이션의 상태 저장소.
+- state의 정보들을 한꺼번에 관리하는 장치.
+
+
+- redux 구
+----------------------------------store---------------------------------------------------------------------
+ㅣ                                                                                                         ㅣ
+ㅣ                                                                                                         ㅣ
+ㅣ                                                                         dispatch                        ㅣ
+ㅣ                                                                  (reducer에게 참조할 정보를 제공)         ㅣ
+ㅣ                                                                                                         ㅣ
+ㅣ                                                                                                         ㅣ
+ㅣ                                                                                                         ㅣ
+ㅣ                                                                                                         ㅣ
+ㅣ         state                             reducer(함수)                subscribe                        ㅣ    <--->      render(함수)
+ㅣ(절대 state에 직접적으로 접근 불가.)       (새 state 값을 리턴)   (state가 바뀔 때마다 render호출)           ㅣ             (사용자기 짤 코드)
+ㅣ                                                                                                         ㅣ
+ㅣ                                                                                                         ㅣ
+ㅣ                                                                                                         ㅣ
+ㅣ                                                                        getstate                         ㅣ
+ㅣ                                                             (state와 render 사이의 접촉을 관리)           ㅣ
+ㅣ                                                                                                         ㅣ
+------------------------------------------------------------------------------------------------------------
+
+
+
+- redux 설치 방법
+  ㄴ redux.js.org 접속
+  ㄴ get start 클릭
+  ㄴ 설명대로 설치.
+  or
+  ㄴ redux cdn 검색
+  ㄴ 주소 복사
+  ㄴ script 에 복사한 주소 참조하여 사용하면 됨.
+
+
+- redux dev tool을 설치하면, time travel debuging이 가능.
+
+========================================================================================================================================================
