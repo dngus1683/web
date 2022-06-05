@@ -1,0 +1,16 @@
+<html>
+    <body>
+        <span>Total clicks: 0</span>
+        <button id="btn">Click me</button>
+    </body>
+    <script>
+        let counter = 0;
+        const button = document.getElementById("btn");  // querySelector와 getElementById는 tag 요소를 js에 가지고 오는 역할을 한다. 여기서 button을 출력해보면 <button id="btn">Click me</button>이 출력된다.
+        const span = document.querySelector("span");    // querySelector와 getElementById의 차이점은, 전자는 해당 tag 중 제일 먼저 오는 tag를 가리키고 후자는 id값에 따른 tag를 가리킨다.
+        function handleClick(){
+            counter += 1;
+            span.innerText = 'Total clicks: ' + counter;
+        }
+        button.addEventListener("click",handleClick);
+    </script>
+</html>
