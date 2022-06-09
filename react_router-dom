@@ -26,6 +26,7 @@ React Router Dom
            ex) <Route exact path="/2"><Home/></Route>
            다른 기능을 확인하고 싶다면 react router 홈페이지를 가라.
 
+/*
 - Switch: ex) <Switch>
                 <Route path="/"><Home/></Route>
                 <Route path="/2"><Topics/></Route>
@@ -43,6 +44,7 @@ React Router Dom
                 <Route path="/3"><Contact/></Route>
                 <Route path="/">Not found</Route>
               </Switch>
+*/
 
 - Link: 위 컴포넌트들은 페이지를 바꿀 때 항상 reload가 된다. reload가 되지 않고 바로바로 화면을 바꿔주는 역할을 하는 컴포넌트가 바로 Link 다.
         사용법은 a tag를 Link tag로 바꾸고 href속성을 to로 바꾸면 된다.
@@ -113,6 +115,27 @@ React Router Dom
                  }
 
                  위 코드를 보면, Route 컴포넌트의 Path에 :이후에 오는 값을 저장하기 위해서 useParams hook을 사용하는 것을 알 수 있다.
+
+- Routes: react-router-dom v6부터는 Switch대신 Routes를 사용하며 Route의 component 속성 대신 element속성을 사용한다. 
+          Routes의 자식으로는 Route만 가능하기 때문에 다음과 같은 코드는 에러가 난다.
+          <Routes>
+            <Route path="/Home"><Home list={menu}/></Route>
+          </Routes>
+          위를 보면 Routes 안에 Route말고 Home이라는 컴포넌트가 존재하므로 에러가 난다.
+          이를 해결하는 방법은 다음과 같다.
+          <Routes>
+            <Route path="/Home" element={<Home list={menu}/>}></Route>
+          </Routes>
+
+          Switch를 사용하지 않고 Not Found를 표현하는 방법은 다음과 같다.
+          <BrowserRouter>
+            <Routes>
+              <Route exact path="/" element={<Gate/>}></Route>
+              <Route path="/Home" element={<Home list={menu}/>}></Route>
+              <Route path="*" element="Not Found"></Route>
+            </Routes>
+          </BrowserRouter>
+
 
 
                                   
