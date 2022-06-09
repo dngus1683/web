@@ -4,7 +4,7 @@ React Router Dom
 
 - 설치: npm install react-router-dom
 
--import {BrowserRouter, Route, Switch} from 'react-router-dom';
+- import {BrowserRouter, Route, Switch, Link, NavLink, useParams} from 'react-router-dom';
 
 
 - BrowserRouter: router를 적용하고 싶은 컴포넌트의 최상위 컴포넌트를 감싸주는 wrapper 컴포넌트다.
@@ -14,7 +14,7 @@ React Router Dom
 -Route: routing의 대상이 되는 컴포넌트를 감싸주는 컴포넌트다.
         ex)<a href="/">1</a>
            <a href="/2">2</a>
-           <a href="/3">1</a>
+           <a href="/3">3</a>
 
            <Route path="/"><Home/></Route>
            <Route path="/2"><Topics/></Route>
@@ -36,6 +36,7 @@ React Router Dom
               때문에 위 코드 그대로 2,3번을 호출한다면 "/"만 실행되고 정작 2,3번은 버려진다. 
               이를 해결하는 방법은 여러가지인데, path="/"에만 exact속성을 추가하거나 해당 컴포넌트를 맨 아래에 위치시키는 방법 등이 있다.
               올바르지 못한 주소로 들어왔을 때, 경고창을 띄우는 방법은 다음과 같다.
+
               <Switch>
                 <Route exact path="/"><Home/></Route>
                 <Route path="/2"><Topics/></Route>
@@ -43,7 +44,77 @@ React Router Dom
                 <Route path="/">Not found</Route>
               </Switch>
 
-        
+- Link: 위 컴포넌트들은 페이지를 바꿀 때 항상 reload가 된다. reload가 되지 않고 바로바로 화면을 바꿔주는 역할을 하는 컴포넌트가 바로 Link 다.
+        사용법은 a tag를 Link tag로 바꾸고 href속성을 to로 바꾸면 된다.
+        ex) <Link to="/">1</a>
+            <Link to="/2">2</a>
+            <Link to="/3">3</a>
+
+            <Route path="/"><Home/></Route>
+            <Route path="/2"><Topics/></Route>
+            <Route path="/3"><Contact/></Route>
+
+- NavLink: Link 컴포넌트에 navigate기능이 추가된 컴포넌트다. NavLink를 사용해서 주소를 클릭하면 해당 tag는 "active"라는 class이름이 활성화 된다. 
+           이를 활용하여 리스트가 있을 때 사용자가 현재 본인이 보고있는 리스트가 어느 리스트인지 확인하는 기능을 구현할 수도 있다.
+           ex) <NavLink exact to="/">1</a>
+               <NavLink to="/2">2</a>
+               <NavLink to="/3">3</a>
+
+               <Route path="/"><Home/></Route>
+               <Route path="/2"><Topics/></Route>
+               <Route path="/3"><Contact/></Route>
+
+               위 코드일 때, 1을 누르면 내부적으로는 <a href="/" class="active">1</a>가 된다.
+
+- useParams: 만약 위처럼 link가 3개가 아니라 1억개라면 일일이 link를 다 수동으로 만들기에는 효율이 떨어진다. 이를 보완해주는데 사용되는 hook이 'useParams'다
+             ex) var = contents = {
+                   {id:1, title:'HTML', description:'HTML is ...'},
+                   {id:2, title:'CSS', description:'CSS is ...'},
+                   {id:3, title:'JS', description:'JS is ...'}
+                 }
+
+                 function Topic(){
+                   var params = useParams();
+                   var topic_id = params.topic_id;
+                   var selected_topic = {
+                     title:'Sorry',
+                     description: 'Not Found'
+                   }
+                   for(var i=0 i<contents.length i++){
+                     if(contents[i].id === Number(topic_id)){
+                      selected_topic = contents[i];
+                      break;
+                    }
+                   }
+                   return(
+                     <div>
+                      <h3>{selected_topic.title}</h3>
+                      {selected_topic.description}
+                     </div>
+                   );
+                 }
+                 
+                 function Topics(){
+                   var lis = [];
+                   for(var i=0 i<contents.length i++){
+                     lis.push(<li key={contents[i].id}><NavLink to={'/topics/'+contents[i].id}>{contents[i].title}</NavLink></li>);
+                   }
+                   return(
+                     <div>
+                      <h2>Topics<h2>
+                      <ul>
+                        {lis}
+                      </ul>
+                      <Route Path='/topics/:topic_id'>
+                        <Topic></Topic>
+                      </Route>
+                     </div>
+                   );
+                 }
+
+                 위 코드를 보면, Route 컴포넌트의 Path에 :이후에 오는 값을 저장하기 위해서 useParams hook을 사용하는 것을 알 수 있다.
 
 
+                                  
+                
 
