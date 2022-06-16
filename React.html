@@ -272,3 +272,20 @@ Redux
 - redux dev tool을 설치하면, time travel debuging이 가능.
 
 ========================================================================================================================================================
+- react proxy 설정방법
+  ㄴsrc폴더 속 package.json에 "proxy":"http://ip주소:port번호" 추가
+  ㄴ위 방법이 통하지 않는다면 npm install http-proxy-middleware --save 로 설치
+  ㄴsetProxy.js파일을 설치하고 
+  const { createProxyMiddleware } = require('http-proxy-middleware');
+
+  module.exports = function(app) {
+    app.use(
+      '/api',
+      createProxyMiddleware({
+        target: 'http://localhost:8080',	# 서버 URL or localhost:설정한포트번호
+        changeOrigin: true,
+      })
+    );
+  };
+  코드 추가.
+  
