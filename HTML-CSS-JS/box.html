@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>box</title>
+    <style>
+      /*
+      block level element
+      h1 처럼 화면 전체가 경계
+      block level element를 inline으로 사용하고 싶다면
+      display: inline;를 추가하면 된다.
+      반대의 경우, inline 대신에 block을 값으로 하면 된다.
+      보이지 않게 하고 싶다면 none을 값으로 하면 된다.
+      */
+      h1 {
+        border-width: 5px;
+        border-color: red;
+        border-style: solid;
+        padding: 20px;  /*테두리로부터 내용을 해당 값만큼 띄운다.*/
+        margin: 20px;  /*테두리끼리 간격을 해당 값만큼 띄운다.*/
+        width: 100px; /*가로 폭을 해당 값만큼 띄운다.*/
+      }
+      /*
+      inline element
+      a 처럼 해당 내용의 크기정도만 경계
+      */
+      a {
+        border-width: 5px;
+        border-color: red;
+        border-style: solid;
+      }
+
+      /*위 처럼 코드 내용이 중복이 되는 경우, 아래와 같이 표현할 수 있다.*/
+      h1, a {
+        border:5px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Box</h1>
+    <h1>Box</h1>
+    여기는 box배치를 공부하기 위한 공간이다. <a href="https://maplestory.nexon.com/Home/Main">링크</a>를 아무거나 해놓겠다.
+  </body>
+</html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>box</title>
+    <style>
+      /*
+      block level element
+      h1 처럼 화면 전체가 경계
+      block level element를 inline으로 사용하고 싶다면
+      display: inline;를 추가하면 된다.
+      반대의 경우, inline 대신에 block을 값으로 하면 된다.
+      보이지 않게 하고 싶다면 none을 값으로 하면 된다.
+      */
+      h1 {
+        border-width: 5px;
+        border-color: red;
+        border-style: solid;
+        padding: 20px;  /*테두리로부터 내용을 해당 값만큼 띄운다.*/
+        margin: 20px;  /*테두리끼리 간격을 해당 값만큼 띄운다.*/
+        width: 100px; /*가로 폭을 해당 값만큼 띄운다.*/
+      }
+      /*
+      inline element
+      a 처럼 해당 내용의 크기정도만 경계
+      */
+      a {
+        border-width: 5px;
+        border-color: red;
+        border-style: solid;
+      }
+
+      /*위 처럼 코드 내용이 중복이 되는 경우, 아래와 같이 표현할 수 있다.*/
+      h1, a {
+        border:5px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Box</h1>
+    <h1>Box</h1>
+    여기는 box배치를 공부하기 위한 공간이다. <a href="https://maplestory.nexon.com/Home/Main">링크</a>를 아무거나 해놓겠다.
+  </body>
+</html>

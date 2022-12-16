@@ -1,0 +1,88 @@
+git error 모음
+
+1. warning: LF will be replaced by CRLF in 
+
+문제발생 명령어: git add --all 
+
+문제발생 이유: LF는 line-feed라고 하는데 Mac, Linux(Unix 계열)의 줄바꿈 문자열 \n을 의미한다.
+ CR은 Mac 초기 모델의 줄바꿈 문자열 \r을 의미한다.
+ CRLF는 Windows, DOS의 줄바꿈 문자열 \r\n을 의미한다.
+ 위처럼 플랫폼마다 줄바꿈 문자열이 달라서, 해당 파일에 줄바꿈이 있을 때 git이 어떤 줄바꿈 문자열을 
+ 사용할지 몰라서 경고를 준 것.
+
+해결: git config --global core.autocrlf true	(windows, DOS 전용 명령어)
+
+
+
+2. the current branch master has no upstream branch
+
+문제발생 명령어: git push
+
+문제발생 이유: push를 할 때, 정확하게 원격저장소 이름을 언급해주지 않아서 경고를 준 것.
+
+해결: git remote -v를 통해 현재 저장된 원격 저장소 이름을 찾고, 
+ git push 이름 브랜치    로 다시 명령어를 입력하면 된다.
+
+
+
+3. failed to push some refs to
+
+문제발생 명령어: git push origin master
+
+문제발생 이유: 원격 저장소와 로컬 저장소의 상태가 달라서 발생한 오류.
+
+해결: git pull로 둘의 상태를 같게 한 다음 push한다.
+
+
+
+4. there is no tracking information for the current branch
+
+문제발생 명령어: git pull
+
+문제발생 이유: 현재 branch에 대한 추적 정보가 없어서 병합할 branch를 지정하라는 경고.
+
+해결: git branch --set-upstream-to=origin/master master 로 local master가 origin/master를 추척하게 해준다.
+
+
+
+5. refusing to merge unrelated histories
+
+문제발생 명령어: git pull
+
+문제발생 이유:  git에서는 서로 관련 기록이 없는 이질적인 두 프로젝트를 병합할 때, 기본적으로 거부하는데
+ 이에 대한 에러메세지다.
+
+해결: git pull origin 브런치명 --allow-unrelated-histories 
+
+
+
+6. Pull is not possible because you have unmerged files
+
+문제발생 명령어: git pull
+
+문제발생 이유: 로컬 저장소와 원격 저장소에 같은 파일이 존재할 때, 로컬 저장소에서 merge(병합)가 되지 않았다는 에러
+
+해결: git commit -am '커밋메시지' 으로 commit을 다시 해주면 된다.
+
+
+
+7. Logon failed, use ctrl+c to cancel basic credential prompt.
+   remote: Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.
+
+
+문제발생 명령어: git push
+
+문제발생 이유: 일시적으로 깃허브에서 비밀번호 인증 방식에 오류가 남.
+
+해결: https://hyeo-noo.tistory.com/184
+
+
+8. (modified content, untracked content)
+
+문제발생 명령어: git add --all
+
+문제발생 이유: 새로 추가된 디렉토리가 이미 다른 repository에 소속되어 있어서 오류가 발생.
+
+해결:  해당 repository에 있는 .git 폴더 제거.
+      git rm -rf --cached /해당폴더    로 git cache를 제거.
+      이후 add를 실행.
